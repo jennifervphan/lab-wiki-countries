@@ -15,7 +15,7 @@ class App extends Component {
 }
 
 componentDidMount() {
-    axios.get("https://countries.tech-savvy.tech/countries")
+    axios.get("http://localhost:3001/countries")
     .then(response => {
         this.setState({countries: response.data})
     })
