@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Link} from 'react-router-dom';
-import countries from './countries.json';
+// import countries from './countries.json';
 
 export default class AllCountries extends Component {
     render() {
+        const {countries}=this.props
+        debugger
         let eachCountry =countries.map(country=>{
             return(
                 <div>

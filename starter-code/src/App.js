@@ -4,15 +4,30 @@ import Nav from './Nav.jsx';
 import AllCountries from './AllCountries.jsx';
 import EachCountry from './EachCountry.jsx';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+        countries:[]
+    }
+}
+
+componentDidMount() {
+    axios.get("https://countries.tech-savvy.tech/countries")
+    .then(response => {
+        this.setState({countries: response.data})
+    })
+}
+
   render() {
     return (
       <div className="App">
        <Nav/>
        <div className="Dashboard">
-       <AllCountries/>
-       <Route path="/detail/:id" component={EachCountry}/>
+       <AllCountries countries={this.state.countries}/>
+       <Route path="/detail/:id" render={props => <EachCountry countries={this.state.countries} {...props}/>} />
        </div>
        {/* <EachCountry/> */}
       </div>
